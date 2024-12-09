@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ ticker }}'s {{ data_request }}</title>
+    </head>
+    <body>
+        <h1>Historical {{ data_request }} Data for {{ ticker }} {% if project %} (projected) {% endif %} </h1>
+            <img src="{{ url_for('fig', data_request=data_request, ticker=ticker, project=project) }}" alt="Historical Data for {{ ticker }}">
+        <form action="/submit_projection" method="POST">
+            <p>Select which date you'd like to project to:
+                <input type="text" name="date" placeholder="mm/dd/yy">
+                <input type="submit" value="Submit"></p>
+        </form>
+
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Data</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <form action="/submit_ticker" method="POST">
+        <label for="data_request">Choose data to view:</label>
+        <select name="data_request" id="data_request">
+            {% for key, value in options.items() %}
+                {% if key == 'open_price' %}
+                    <option value="{{ key }}" selected>{{ value }}</option>
+                {% else %}
+                    <option value="{{ key }}">{{ value }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <p>Select which coin you would like to visualize:</p>
+        <table>
+            {% for ticker in tickers %}
+            <tr>
+                <td style="text-align:left">
+                    <!-- Radio button for each ticker -->
+                    <input type="radio" name="ticker" id="{{ ticker }}" value="{{ ticker }}" {% if loop.first %}checked{% endif %}>
+                    <label for="{{ ticker }}">{{ ticker }}</label>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+</body>
+</html>
